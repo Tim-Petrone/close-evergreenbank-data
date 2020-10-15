@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <entity-facade-xml type="seed">
+    <!--Role Types-->
+    <mantle.party.RoleType roleTypeId="NonBorrowerOwner" description="Non-Borrower Owner"/>
+
     <!--Localizations-->
     <moqui.basic.LocalizedEntityField entityName="moqui.basic.StatusItem" fieldName="description" pkValue="OrderOpen" locale="en" localized="Open" />
     <moqui.basic.LocalizedEntityField entityName="moqui.basic.StatusItem" fieldName="description" pkValue="OrderRequested" locale="en" localized="Requested" />
