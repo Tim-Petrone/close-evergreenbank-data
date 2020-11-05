@@ -246,9 +246,9 @@
           <#if coApplicant??>
             ${coAppPerson.firstName} ${coAppPerson.lastName}<br>
           </#if>
-          ${propertyAddress.address1!"-"} ${propertyAddress.address2!""}<br>
-          ${propertyAddress.city!"-"}, ${propertyAddress.stateProvinceGeo.geoName!"-"}
-          ${propertyAddress.postalCode!"-"}
+          ${(propertyPostalAddress.address1)!"-"} ${(propertyPostalAddress.address2)!""}<br>
+          ${(propertyPostalAddress.city)!"-"}, ${(propertyPostalAddress.stateProvinceGeo.geoName)!"-"}
+          ${(propertyPostalAddress.postalCode)!"-"}
         </div>
         <div style="margin-left: 3%;">
           Lender:
