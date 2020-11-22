@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
+
+    <actions>
+        <entity-find-one entity-name="mantle.product.store.ProductStore" value-field="store">
+            <field-map field-name="productStoreId" from="message.productStoreId"/>
+        </entity-find-one>
+        <set field="storeName" from="store?.storeName ?: 'Unknown'"/>
+
+        <entity-find-one entity-name="mantle.order.OrderPart" value-field="part">
+            <field-map field-name="orderId" from="message.orderId"/>
+            <field-map field-name="orderPartSeqId" value="01"/>
+        </entity-find-one>
+
+        <entity-find-one entity-name="mantle.party.Party" value-field="party">
+            <field-map field-name="partyId" from="part.customerPartyId"/>
+        </entity-find-one>
+
+        <set field="customerName" value=""/>
+        <if condition="party.partyTypeEnumId == 'PtyPerson'"><then>
+            <set field="customerName" value="${party.person.firstName} ${party.person.lastName}" />
+        </then><else>
+            <set field="customerName" value="${party.organization.organizationName}" />
+        </else></if>
+        <!-- Link needs to not be called "link" or FTL complains about it being a macro name -->
+        <set field="linkText" from="link"/>
+
+        <!-- Look up current user timezone/locale for date -->
+        <set field="timezone" from="ec.user.getTimeZone()"/>
+        <set field="locale" from="ec.user.getLocale()"/>
+        <if condition="toUserId">
+            <entity-find-one entity-name="moqui.security.UserAccount" value-field="userAccount" auto-field-map="[userId: toUserId]"/>
+            <if condition="userAccount?.timeZone">
+                <set field="timezone" from="TimeZone.getTimeZone(userAccount.timeZone)"/>
+            </if>
+            <if condition="userAccount?.locale">
+                <set field="locale" from="new Locale(userAccount.locale)"/>
+            </if>
+        </if>
+    </actions>
+    <widgets>
+        <render-mode>
+            <text type="html" location="component://close-evergreenbank-data/template/email/EvergreenOrderPlacedDealer.html.ftl" />
+        </render-mode>
+    </widgets>
+</screen>
