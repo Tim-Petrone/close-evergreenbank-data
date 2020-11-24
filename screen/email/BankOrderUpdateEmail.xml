@@ -40,7 +40,7 @@
     </actions>
     <widgets>
         <render-mode>
-            <text type="html" location="component://close-evergreenbank-data/template/email/EvergreenOrderPlacedDealer.html.ftl" />
+            <text type="html" location="${templateLocation}"/>
         </render-mode>
     </widgets>
 </screen>
