@@ -179,6 +179,10 @@
             <p>Scores range from a low of 300 to a high of 850</p>
             <p style="page-break-before: always">
             <p>Key factors that adversely affected your credit score:</p>
+            <#if noScoreReason??>
+                <br />
+                <p><u>Not Scored: ${noScoreReason}</u></p>
+            </#if>
             <#list creditScoreFactors>
                 <ul>
                     <#items as creditScoreFactor>
