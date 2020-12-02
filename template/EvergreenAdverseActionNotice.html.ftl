@@ -1,5 +1,11 @@
 <#assign seq = ['Insufficient income for amount of credit requested', 'Length of employment', 'Temporary or irregular employment', 'Insufficient number of credit references provided', 'Property taxes not paid as agreed', 'Poor credit performance with us', 'Temporary residence', 'Length of residence', 'Residence not within our current lending territory', 'Unable to verify all income', 'Unable to verify employment', 'Unable to verify property is primary residence of all applicants', 'Unable to verify all applicants have an ownership interest in property to be improved', 'All applicants not in title to property or lack ownership interest', 'Reverse mortgage lien exists on property', '3 rd mortgage position not acceptable','Value or type of collateral insufficient','Property type to be improved is ineligible','Terms requested not offered','Amount requested ineligible for unsecured credit','Ineligible for additional credit with lender','Mortgage or credit insurance denied','Incomplete application/requested information not provided', 'Other']>
 <#assign showBasedDecision = false>
+<#if applicantCreditScore??>
+    <#assign creditScoreNum = applicantCreditScore?replace(",", "")?number>
+    <#if creditScoreNum gt 8999>
+        <#assign applicantCreditScore = 'N/A'>
+    </#if>
+</#if>
 
 <div>
     <style>
