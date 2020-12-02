@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
+    <parameter name="orderId"/>
+
+    <actions>
+        <service-call name="mantle.order.OrderInfoServices.get#OrderDisplayInfo" in-map="[orderId:message.orderId, templateSettingSuffix: 'TemplateOrderRejected']" out-map="context"/>
+        <service-call name="close.EmailServices.get#OrderStatusUpdateEmailData" in-map="[orderId:message.orderId, partyId: partyId]" out-map="context"/>
+
+        <entity-find-one entity-name="mantle.party.Person" value-field="customer">
+            <field-map field-name="partyId" from="bodyParameters.partyId"/>
+        </entity-find-one>
+        <set field="customerName" value="${customer.firstName} ${customer.lastName}"/>
+    </actions>
+
+    <widgets>
+        <render-mode>
+            <text type="html" location="component://close-evergreenbank-data/template/email/EvergreenOrderDeclinedLender.html.ftl"/>
+        </render-mode>
+    </widgets>
+</screen>
