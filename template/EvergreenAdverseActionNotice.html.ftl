@@ -1,5 +1,6 @@
 <#assign seq = ['Insufficient income for amount of credit requested', 'Length of employment', 'Temporary or irregular employment', 'Insufficient number of credit references provided', 'Property taxes not paid as agreed', 'Poor credit performance with us', 'Temporary residence', 'Length of residence', 'Residence not within our current lending territory', 'Unable to verify all income', 'Unable to verify employment', 'Unable to verify property is primary residence of all applicants', 'Unable to verify all applicants have an ownership interest in property to be improved', 'All applicants not in title to property or lack ownership interest', 'Reverse mortgage lien exists on property', '3 rd mortgage position not acceptable','Value or type of collateral insufficient','Property type to be improved is ineligible','Terms requested not offered','Amount requested ineligible for unsecured credit','Ineligible for additional credit with lender','Mortgage or credit insurance denied','Incomplete application/requested information not provided', 'Other']>
 <#assign showBasedDecision = false>
+<#assign noCreditFile = false>
 <#if applicantCreditScore??>
     <#assign creditScoreNum = applicantCreditScore?replace(",", "")?number>
     <#if creditScoreNum gt 8999>
@@ -145,6 +146,9 @@
                     <#if seq?seq_contains(adverseActionReason)>
                         <#assign showBasedDecision = true>
                     </#if>
+                    <#if adverseActionReason == "No credit file">
+                        <#assign noCreditFile = true>
+                    </#if>
                 </#items>
             </ol>
         </#list>
@@ -180,14 +184,28 @@
             in your consumer report changes.</p>
         <br>
         <div style="margin-left: 30px;">
-            <p><b>Your credit score: ${applicantCreditScore!"no score available"}</b></p>
+            <p><b>Your credit score: 
+                <#if noCreditFile>
+                    no score available
+                    <#else>
+                    ${applicantCreditScore!"no score available"}
+                </#if> 
+            </b></p>
             <p>Date of credit score: ${dateCreditPulled!"-"}</p>
             <p>Scores range from a low of 300 to a high of 850</p>
             <p style="page-break-before: always">
             <p>Key factors that adversely affected your credit score:</p>
             <#if noScoreReason??>
-                <br />
-                <p><u>Not Scored: ${noScoreReason}</u></p>
+                <ul>
+                    <li>
+                        <u>Not Scored: ${noScoreReason}</u>
+                    </li>
+                </ul>
+            </#if>
+            <#if noCreditFile>
+                <ul>
+                    <li>No record found.</li>
+                </ul>
             </#if>
             <#list creditScoreFactors>
                 <ul>
