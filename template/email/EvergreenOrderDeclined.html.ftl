@@ -84,7 +84,7 @@
         <p>
             ${(dealerName)!"-"}
             <br />
-            ${vendorCombinedAddress}
+            ${(vendorCombinedAddress)!"-"}
             <br />
             <#if (vendorContactInfo?? && (vendorContactInfo.telecomNumber)??)>
                 ${vendorContactInfo.telecomNumber.areaCode}-${vendorContactInfo.telecomNumber.contactNumber}
