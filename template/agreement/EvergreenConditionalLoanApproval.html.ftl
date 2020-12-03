@@ -49,7 +49,7 @@
       border-right: 3px solid black;
     }
     .wrapper > div > div {
-      padding: 6px;
+      padding: 1em 6px 0;
     }
     .payment-amount {
       margin-bottom: 0;
@@ -64,7 +64,7 @@
     }
     .rate-term > p {
       font-size: 0.9rem;
-      margin-bottom: 0;
+      margin: 0;
     }
     .offer-note {
       border-top: 3px solid black;
@@ -136,12 +136,22 @@
         </div>
         <div class="contractor-box">
           Contractor: ${referrer.storeName!"-"}
-                <div style="display: flex; justify-content: space-around;">
-                  <span>Ph:  (${dealerContactInfo.telecomNumber.areaCode!"-"})${dealerContactInfo.telecomNumber.contactNumber!"-"}</span>
-                  <span>
-                    FAX:
-                  </span>
-                </div>
+          <br />
+          <br />
+            <div style="display: flex; justify-content: space-around;">
+              <span>Ph:
+                <#if dealerContactInfo.telecomNumber??>
+                    (${dealerContactInfo.telecomNumber.areaCode})${dealerContactInfo.telecomNumber.contactNumber}
+                <#else>Not available
+                </#if> 
+              </span>
+              <span>FAX: 
+                <#if dealerFaxInfo.telecomNumber??>
+                  (${dealerFaxInfo.telecomNumber.areaCode})${dealerFaxInfo.telecomNumber.contactNumber}
+                <#else>Not available
+                </#if>
+              </span>
+            </div>
         </div>
         <div class="borrower-box">
           Borrowers:
@@ -162,7 +172,7 @@
       <div>
         <div class="contract-wrapper">
           <div class="payment-amount">
-            <table style="padding-top: 1em">
+            <table>
               <th id="header"></th>
               <tbody>
                 <tr>
