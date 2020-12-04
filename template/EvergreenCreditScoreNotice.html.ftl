@@ -12,6 +12,13 @@
     <#assign showCreditPulled = true>
 </#if>
 
+<#if applicantCreditScore??>
+    <#assign creditScoreNum = applicantCreditScore?replace(",", "")?number>
+    <#if creditScoreNum gt 8999>
+      <#assign applicantCreditScore = 'N/A'>
+    </#if>
+</#if>
+
 <#--  Find a better way to distinguish secured vs unsecured  -->
 <#assign isSecured = false>
 
