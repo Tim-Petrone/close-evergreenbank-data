@@ -71,14 +71,14 @@
             Co-Applicant: <#list coApplicants as coApplicant> ${(coApplicant.person.firstName)!"-"} ${(coApplicant.person.lastName)!"-"}</#list>
         </p>
         <p>
-            ${primaryApplicant.partyName!"-"} has been conditionally approved for the accepted loan terms.  
+            ${primaryApplicant.partyName!"-"} has been conditionally approved for the accepted loan terms.
         </p>
         <p>
             <b>IMPORTANT:</b> loan requirements must be satisfied by Dealer (refer to Conditional Loan Approval letter). Please make certain all required loan forms/stipulations are submitted and cleared by a loan underwriter BEFORE starting the work.
         </p>
         <p> Access the order on the Dashboard to view the Conditional Loan Approval letter and stipulations using the link below:</p>
         <a href="${detailLinkPath}?orderId=${orderId}" class="button">View Conditional Approval Terms</a>
-        
+
     </div>
 
     <footer class="footer contentBody">
@@ -87,7 +87,7 @@
             Evergreen Bank Group<br />
 	        Dealer Services: (888) 505-2265<br />
 	        Email: hi@evergreenbankgroup.com<br />
-	        Online Dashboard 24/7: https://evergreenbank.close.mkdecision.com/capps
+	        Online Dashboard 24/7: https://evergreenbank.close.mkdecision.com/dashboard/
         </p>
     </footer>
 </body>

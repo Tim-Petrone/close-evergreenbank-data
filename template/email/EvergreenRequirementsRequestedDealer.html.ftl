@@ -71,7 +71,7 @@
             Co-Applicant: <#list coApplicants as coApplicant> ${(coApplicant.person.firstName)!"-"} ${(coApplicant.person.lastName)!"-"}</#list>
         </p>
         <p>
-            Thank you for submitting this application!   
+            Thank you for submitting this application!
         </p>
         <p>
             Before you start the project, you must submit the unsatisfied stipulations listed below. Note that this list <i>excludes</i> the standard loan forms that are to be signed as shown on the Conditional Approval Letter.
@@ -87,7 +87,7 @@
 
         <p>Click the button below to upload documents:</p>
         <a href="${detailLinkPath}?orderId=${orderId}" class="button">Upload Documents</a>
-        
+
     </div>
 
     <footer class="footer contentBody">
@@ -96,7 +96,7 @@
             Evergreen Bank Group<br />
 	        Dealer Services: (888) 505-2265<br />
 	        Email: hi@evergreenbankgroup.com<br />
-	        Online Dashboard 24/7: https://evergreenbank.close.mkdecision.com/capps
+	        Online Dashboard 24/7: https://evergreenbank.close.mkdecision.com/dashboard/
         </p>
     </footer>
 </body>
