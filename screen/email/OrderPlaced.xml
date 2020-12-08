@@ -8,7 +8,6 @@
         <service-call name="close.EmailServices.get#OrderStatusUpdateEmailData" in-map="[orderId:orderId, partyId: partyId]" out-map="context"/>
     </actions>
 
-
     <widgets>
         <render-mode>
             <text type="html" location="component://close-evergreenbank-data/template/email/EvergreenOrderPlacedDealer.html.ftl"/>
