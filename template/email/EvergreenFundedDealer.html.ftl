@@ -65,7 +65,7 @@
             Your funds have been sent electronically by ACH!  <br />
             Total loan disbursements: ${(creditLine?string.currency)!"-"}. You may print this notice for your records.
         </p>
-      
+
     </div>
 
     <footer class="footer contentBody">
@@ -74,7 +74,7 @@
             Evergreen Bank Group<br />
 	        Dealer Services: (888) 505-2265<br />
 	        Email: hi@evergreenbankgroup.com<br />
-	        Online Dashboard 24/7: https://evergreenbank.close.mkdecision.com/capps
+	        Online Dashboard 24/7: https://evergreenbank.close.mkdecision.com/dashboard/
         </p>
     </footer>
 </body>

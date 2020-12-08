@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
+    <parameter name="orderId"/>
+
+    <actions>
+        <service-call name="mantle.order.OrderInfoServices.get#OrderDisplayInfo" in-map="[orderId:orderId, templateSettingSuffix: 'TemplateOrderPlaced']" out-map="context"/>
+        <service-call name="close.EmailServices.get#OrderStatusUpdateEmailData" in-map="[orderId:orderId, partyId: partyId]" out-map="context"/>
+    </actions>
+
+
+    <widgets>
+        <render-mode>
+            <text type="html" location="component://close-evergreenbank-data/template/email/EvergreenOrderPlacedDealer.html.ftl"/>
+        </render-mode>
+    </widgets>
+</screen>

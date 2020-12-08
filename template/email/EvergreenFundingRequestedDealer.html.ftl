@@ -62,7 +62,7 @@
             Co-Applicant: <#list coApplicants as coApplicant> ${(coApplicant.person.firstName)!"-"} ${(coApplicant.person.lastName)!"-"}</#list>
         </p>
         <p>
-            We have received your funding request.   
+            We have received your funding request.
         </p>
         <p>
             You will be notified as soon as the funding has been approved or if there are any loan requirements missing.
@@ -75,7 +75,7 @@
             Evergreen Bank Group<br />
 	        Dealer Services: (888) 505-2265<br />
 	        Email: hi@evergreenbankgroup.com<br />
-	        Online Dashboard 24/7: https://evergreenbank.close.mkdecision.com/capps
+	        Online Dashboard 24/7: https://evergreenbank.close.mkdecision.com/dashboard/
         </p>
     </footer>
 </body>

@@ -55,9 +55,13 @@
 </head>
 
 <body class="background">
-    <header class="header contentBody">
-        <img src="${storeLogo}" alt="Bank Logo" class="headerImage" />
-    </header>
+
+        <#if storeLogo?has_content>
+            <header class="header contentBody">
+                <img src="${storeLogo}" alt="Bank Logo" class="headerImage" />
+            </header>
+        </#if>
+
 
     <div class="contentBody">
         <p class="salutation">
@@ -69,8 +73,8 @@
         <p class="salutation">
             Contracting Company: ${(dealerName)!"-"} <br />
             Representative: ${(contacts[0].person.firstName)!"-"} ${(contacts[0].person.lastName)!"-"} <br />
-            Primary Applicant: ${primaryApplicant.partyName!"-"} <br />
-            Co-Applicant: <#list coApplicants as coApplicant> ${(coApplicant.person.firstName)!"-"} ${(coApplicant.person.lastName)!"-"}</#list>
+            Primary Applicant: ${(primaryApplicant.partyName)!"-"} <br />
+            Co-Applicant: <#list coApplicants! as coApplicant> ${(coApplicant.person.firstName)!"-"} ${(coApplicant.person.lastName)!"-"}</#list>
         </p>
         <p>
             Thank you for your home improvement loan application which was submitted by your contactor. We have prepared a Loan Estimate based on the current terms requested, which could later change.

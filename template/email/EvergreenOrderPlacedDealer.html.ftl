@@ -71,11 +71,11 @@
             Co-Applicant: <#list coApplicants as coApplicant> ${(coApplicant.person.firstName)!"-"} ${(coApplicant.person.lastName)!"-"}</#list>
         </p>
         <p>
-            We have received one or more electronically signed loan forms from your customer. Please check the Dealer Dashboard to determine if any stipulations or forms still need to be satisfied before starting the project.  
+            We have received one or more electronically signed loan forms from your customer. Please check the Dealer Dashboard to determine if any stipulations or forms still need to be satisfied before starting the project.
         </p>
         <p> Click the button below to view the order on Dashboard.</p>
         <a href="${detailLinkPath}?orderId=${orderId}" class="button">View Application</a>
-        
+
     </div>
 
     <footer class="footer contentBody">
@@ -84,7 +84,7 @@
             Evergreen Bank Group<br />
 	        Dealer Services: (888) 505-2265<br />
 	        Email: hi@evergreenbankgroup.com<br />
-	        Online Dashboard 24/7: https://evergreenbank.close.mkdecision.com/capps
+	        Online Dashboard 24/7: https://evergreenbank.close.mkdecision.com/dashboard/
         </p>
     </footer>
 </body>

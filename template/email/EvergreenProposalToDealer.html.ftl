@@ -41,7 +41,7 @@
         .salutation {
             font-size: 0.825rem;
         }
-        
+
         .small {
                 font-size: 12px;
                 line-height: 16px;
@@ -108,13 +108,13 @@
             <p><i>Please confirm that these <u>COUNTER-OFFERED</u> terms are acceptable to you and your customer by accepting the terms using the online Dashboard, or by contacting us directly. </i></p>
 
             <a href="${detailLinkPath}?orderId=${orderId}" class="button">Accept Application on Dashboard</a>
-            
+
             <#if isSecured>
              <p>Title must confirm ownership and only one open mortgage</p>
                 </p>If you and your customer accept the terms of the secured <u>counter-offer</u>, we will then order a title search to verify property information and continue processing this credit application. Once title is received, we will notify you if it is acceptable and finish processing the application.</p>
             <#else>
                  <p>If you accept the terms of the unsecured <u>counter-offer</u>, we can quickly finish processing this application.</p>
-            </#if>  
+            </#if>
 
             <p>If no reply is received soon or the terms are not acceptable, a denial letter (based on the terms initially requested and which the applicants do not qualify for) will be sent to each applicant in approximately 2 weeks.</p>
             <p class="small">Notice: a reply is needed within 14 days, otherwise a denial letter (based on the terms initially requested and which the applicants do not qualify for) will be sent to each applicant in compliance with lending regulations.</p>
@@ -161,7 +161,7 @@
             Evergreen Bank Group<br />
 	        Dealer Services: (888) 505-2265<br />
 	        Email: hi@evergreenbankgroup.com<br />
-	        Online Dashboard 24/7: https://evergreenbank.close.mkdecision.com/capps
+	        Online Dashboard 24/7: https://evergreenbank.close.mkdecision.com/dashboard/
         </p>
     </footer>
 </body>

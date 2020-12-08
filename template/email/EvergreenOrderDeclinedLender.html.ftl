@@ -60,6 +60,7 @@
     </header>
 
     <div class="contentBody">
+    <h1>LENDER TBC...</h1>
         <p class="salutation">
             Date: ${.now?date?string.long} ${.now?time?string.long} <br />
             Loan application: ${orderId!"-"} <br />
@@ -84,7 +85,7 @@
         <p>
             ${(dealerName)!"-"}
             <br />
-            ${(vendorCombinedAddress)!"-"}
+            ${vendorCombinedAddress}
             <br />
             <#if (vendorContactInfo?? && (vendorContactInfo.telecomNumber)??)>
                 ${vendorContactInfo.telecomNumber.areaCode}-${vendorContactInfo.telecomNumber.contactNumber}
