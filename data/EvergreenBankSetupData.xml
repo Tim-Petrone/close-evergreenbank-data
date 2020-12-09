@@ -11,4 +11,13 @@
     <!-- Overrides Natural Person Certification in moqui-close -->
     <moqui.basic.LocalizedEntityField entityName="moqui.basic.Enumeration" fieldName="description" pkValue="MkAgrNaturalPersonCertification" locale="en" localized="Authorized Signer Certification" />
     <moqui.basic.LocalizedEntityField entityName="moqui.basic.Enumeration" fieldName="description" pkValue="PsstTemplateAgrNaturalPersonCert" locale="en" localized="Template Authorized Signer Certification Agreement" />
+
+    <!-- Additional cancel reasons -->
+    <moqui.basic.Enumeration enumTypeId="OrderDecisionReason" enumId="OdrCancelApplicationIncomplete" enumCode="" description="Application incomplete" relatedEnumId="DtCancelled"/>
+    <moqui.basic.Enumeration enumTypeId="OrderDecisionReason" enumId="OdrCancelApproveNotAccepted" enumCode="" description="Application approved but not accepted" relatedEnumId="DtCancelled"/>
+    <moqui.basic.Enumeration enumTypeId="OrderDecisionReason" enumId="OdrCancelApplicationWithdrawn" enumCode="" description="Application withdrawn" relatedEnumId="DtCancelled"/>
+
+    <moqui.basic.EnumGroupMember enumGroupEnumId="MkOrderDecisionReasonEnumGroup" enumId="OdrCancelApplicationIncomplete" />
+    <moqui.basic.EnumGroupMember enumGroupEnumId="MkOrderDecisionReasonEnumGroup" enumId="OdrCancelApproveNotAccepted" />
+    <moqui.basic.EnumGroupMember enumGroupEnumId="MkOrderDecisionReasonEnumGroup" enumId="OdrCancelApplicationWithdrawn" />
 </entity-facade-xml>
