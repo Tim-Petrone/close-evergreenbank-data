@@ -4,8 +4,8 @@
     <parameter name="orderId"/>
 
     <actions>
-        <service-call name="mantle.order.OrderInfoServices.get#OrderDisplayInfo" in-map="[orderId:orderId, templateSettingSuffix: 'TemplateOrderPlaced']" out-map="context"/>
-        <service-call name="close.EmailServices.get#OrderStatusUpdateEmailData" in-map="[orderId:orderId, partyId: partyId]" out-map="context"/>
+        <service-call name="mantle.order.OrderInfoServices.get#OrderDisplayInfo" in-map="[orderId:message.orderId, templateSettingSuffix: 'TemplateOrderPlaced']" out-map="context"/>
+        <service-call name="close.EmailServices.get#OrderStatusUpdateEmailData" in-map="[orderId:message.orderId, partyId: partyId]" out-map="context"/>
     </actions>
 
 
