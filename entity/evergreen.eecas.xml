@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eecas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/entity-eca-2.1.xsd">
+    <eeca id="OrderCustomerProcessingLoanEstimatePdf" entity="mantle.order.OrderHeader" on-update="true">
+        <condition><expression>statusChanged &amp;&amp; statusId == 'OrderCustomerProcessing'</expression></condition>
+        <actions>
+                <service-call name="close.agreements.FillablePdfServices.fill#FillablePdf" in-map="[orderId: orderId, agreementTypeEnumId: 'MkAgrLoanEstimate']"/>
+                <service-call name="close.EmailServices.send#OrderStoreEmailAllApplicants" in-map="[
+                        orderId:orderId, emailTypeEnumId:'PsetIndirectLoanEstimate', roleTypeIds: ['PrimaryApplicant', 'CoApplicant']
+                    ]"/>
+        </actions>
+    </eeca>
+</eecas>
