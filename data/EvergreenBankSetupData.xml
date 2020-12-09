@@ -16,4 +16,13 @@
     <moqui.service.job.ServiceJob jobName="SendLoanEstimateNotice" description="Send Loan Estimate Notice Three Days After Requested Status" serviceName="close.EvergreenServices.check#ToGenerateLoanEstimate" cronExpression="0 0 7 ? * MON,TUE,WED,THU,FRI,SAT,SUN *">
         <moqui.service.job.ServiceJobParameter parameterName="agreementTypeEnumId" parameterValue="MkAgrLoanEstimate"/>
     </moqui.service.job.ServiceJob>
+
+    <!-- Additional cancel reasons -->
+    <moqui.basic.Enumeration enumTypeId="OrderDecisionReason" enumId="OdrCancelApplicationIncomplete" enumCode="" description="Application incomplete" relatedEnumId="DtCancelled"/>
+    <moqui.basic.Enumeration enumTypeId="OrderDecisionReason" enumId="OdrCancelApproveNotAccepted" enumCode="" description="Application approved but not accepted" relatedEnumId="DtCancelled"/>
+    <moqui.basic.Enumeration enumTypeId="OrderDecisionReason" enumId="OdrCancelApplicationWithdrawn" enumCode="" description="Application withdrawn" relatedEnumId="DtCancelled"/>
+
+    <moqui.basic.EnumGroupMember enumGroupEnumId="MkOrderDecisionReasonEnumGroup" enumId="OdrCancelApplicationIncomplete" />
+    <moqui.basic.EnumGroupMember enumGroupEnumId="MkOrderDecisionReasonEnumGroup" enumId="OdrCancelApproveNotAccepted" />
+    <moqui.basic.EnumGroupMember enumGroupEnumId="MkOrderDecisionReasonEnumGroup" enumId="OdrCancelApplicationWithdrawn" />
 </entity-facade-xml>
