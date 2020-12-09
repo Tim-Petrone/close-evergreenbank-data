@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eecas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/entity-eca-2.1.xsd">
+    <eeca id="generateCloseDisclosure" entity="mantle.party.agreement.AgreementSignature" on-create="true">
+        <actions>
+<!--            Check if its noticeofIntent is the agreement that was signed -->
+            <entity-find-one entity-name="mantle.order.OrderAgreementDetail" value-field="noticeOfIntent">
+                <field-map field-name="agreementId"/>
+                <field-map field-name="agreementTypeEnumId" value="NOTICE_OF_INTENT_ENUM_WHEN_CREATED"/>
+            </entity-find-one>
+            <if condition="noticeOfIntent">
+                <service-call name="close.agreements.FillablePdfServices.fill#FillablePdf" in-map="[orderId: noticeOfIntent?.orderId, agreementTypeEnumId: 'MkAgrCloseDisclosure']"/>
+            </if>
+        </actions>
+    </eeca>
+</eecas>
