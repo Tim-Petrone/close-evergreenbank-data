@@ -7,9 +7,6 @@
         <in-parameters>
             <parameter name="agreementTypeEnumId" default-value="MkAgrLoanEstimate"/>
         </in-parameters>
-        <out-parameters>
-
-        </out-parameters>
         <actions>
             <!--Grab all the orders that the changedDate for their statusId is been 3 days ago
                 7 Day period is for down time if occurred to not miss any order-->
