@@ -13,7 +13,7 @@
     <moqui.basic.LocalizedEntityField entityName="moqui.basic.Enumeration" fieldName="description" pkValue="PsstTemplateAgrNaturalPersonCert" locale="en" localized="Template Authorized Signer Certification Agreement" />
 
     <!-- Service Job for Sending Loan Estimate -->
-    <moqui.service.job.ServiceJob jobName="SendLoanEstimateNotice" description="Send Loan Estimate Notice Three Days After Requested Status" serviceName="close.EvergreenServices.check#ToGenerateLoanEstimate" cronExpression="0 0 7 ? * MON,TUE,WED,THU,FRI,SAT,SUN *">
+    <moqui.service.job.ServiceJob jobName="SendLoanEstimateNotice" description="Send Loan Estimate Notice Three Days After Requested Status" serviceName="close.EvergreenServices.check#ToGenerateLoanEstimate" cronExpression="0 0 7 ? * MON,TUE,WED,THU,FRI,SAT *">
         <moqui.service.job.ServiceJobParameter parameterName="agreementTypeEnumId" parameterValue="MkAgrLoanEstimate"/>
     </moqui.service.job.ServiceJob>
 
