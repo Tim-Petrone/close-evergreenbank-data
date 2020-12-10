@@ -11,8 +11,9 @@
 
         </out-parameters>
         <actions>
-            <!--Grab all the orders that the changedDate for their statusId is been 3 days ago-->
-            <set field="threeDaysAgoStart" from="ec.user.nowTimestamp.minus(3).toString().substring(0,10) + ' 12:00:00'"/>
+            <!--Grab all the orders that the changedDate for their statusId is been 3 days ago
+                7 Day period is for down time if occurred to not miss any order-->
+            <set field="threeDaysAgoStart" from="ec.user.nowTimestamp.minus(7).toString().substring(0,10) + ' 12:00:00'"/>
             <set field="threeDaysAgoEnd" from="ec.user.nowTimestamp.minus(2).toString().substring(0,10) + ' 12:00:00'"/>
 
             <entity-find entity-name="moqui.entity.EntityAuditLog" list="listOfOrderRequested">
