@@ -1,5 +1,5 @@
 <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-2.1.xsd">
-    <service verb="check" noun="LoanEstimateIfExists" authenticate="anonymous-all">
+    <service verb="generate" noun="LoanEstimateIfExists" authenticate="anonymous-all">
         <description>
             Evergreen custom service to generate loan estimate 3 days after the requested date
             Loan Estimate should not be sent after 3 days if the status is Customer Processing (SECA)

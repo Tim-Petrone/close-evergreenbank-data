@@ -13,7 +13,7 @@
     <moqui.basic.LocalizedEntityField entityName="moqui.basic.Enumeration" fieldName="description" pkValue="PsstTemplateAgrNaturalPersonCert" locale="en" localized="Template Authorized Signer Certification Agreement" />
 
     <!-- Service Job for Sending Loan Estimate -->
-    <moqui.service.job.ServiceJob jobName="SendLoanEstimateNotice" description="Send Loan Estimate Notice Three Days After Requested Status" serviceName="close.EvergreenServices.check#LoanEstimateIfExists" cronExpression="0 0 7 ? * * *"/>
+    <moqui.service.job.ServiceJob jobName="SendLoanEstimateNotice" description="Send Loan Estimate Notice Three Days After Requested Status" serviceName="close.EvergreenServices.generate#LoanEstimateIfExists" cronExpression="0 0 7 ? * * *"/>
 
     <!-- Additional cancel reasons -->
     <moqui.basic.Enumeration enumTypeId="OrderDecisionReason" enumId="OdrCancelApplicationIncomplete" enumCode="" description="Application incomplete" relatedEnumId="DtCancelled"/>
