@@ -1,37 +1,33 @@
 <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-2.1.xsd">
-    <service verb="check" noun="ToGenerateLoanEstimate" authenticate="anonymous-all">
+    <service verb="check" noun="LoanEstimateIfExists" authenticate="anonymous-all">
         <description>
             Evergreen custom service to generate loan estimate 3 days after the requested date
             Loan Estimate should not be sent after 3 days if the status is Customer Processing (SECA)
         </description>
-        <in-parameters>
-            <parameter name="agreementTypeEnumId" default-value="MkAgrLoanEstimate"/>
-        </in-parameters>
         <actions>
+            <set field="agreementTypeEnumId" value="MkAgrLoanEstimate"/>
             <!--Grab all the orders that the changedDate for their statusId is been 3 days ago
                 7 Day period is for down time if occurred to not miss any order-->
-            <set field="threeDaysAgoStart" from="ec.user.nowTimestamp.minus(7).toString().substring(0,10) + ' 12:00:00'"/>
+            <set field="sevenDaysAgoStart" from="ec.user.nowTimestamp.minus(7).toString().substring(0,10) + ' 12:00:00'"/>
             <set field="threeDaysAgoEnd" from="ec.user.nowTimestamp.minus(2).toString().substring(0,10) + ' 12:00:00'"/>
 
             <entity-find entity-name="moqui.entity.EntityAuditLog" list="listOfOrderRequested">
                 <econdition field-name="changedEntityName" value="mantle.order.OrderHeader"/>
                 <econdition field-name="changedFieldName" value="statusId"/>
                 <econdition field-name="newValueText" value="OrderRequested"/>
-                <econdition field-name="changedDate" operator="greater-equals" from="threeDaysAgoStart"/>
+                <econdition field-name="changedDate" operator="greater-equals" from="sevenDaysAgoStart"/>
                 <econdition field-name="changedDate" operator="less" from="threeDaysAgoEnd"/>
             </entity-find>
 
             <set field="orderIdList" from="listOfOrderRequested?.pkPrimaryValue"/>
 
             <iterate list="orderIdList" entry="orderId">
-                <if condition="agreementTypeEnumId">
-                    <service-call name="close.AgreementServices.check#AgreementExist" in-map="[orderId: orderId, agreementTypeEnumId: agreementTypeEnumId]" out-map="context"/>
-                    <if condition="!exist">
-                        <service-call name="close.agreements.FillablePdfServices.fill#FillablePdf" in-map="[orderId: orderId, agreementTypeEnumId: 'MkAgrLoanEstimate']"/>
-                        <service-call name="close.EmailServices.send#OrderStoreEmailAllApplicants" in-map="[
-                            orderId:orderId, emailTypeEnumId:'PsetIndirectLoanEstimate', roleTypeIds: ['PrimaryApplicant', 'CoApplicant']
-                        ]"/>
-                    </if>
+                <service-call name="close.AgreementServices.check#AgreementExist" in-map="[orderId: orderId, agreementTypeEnumId: agreementTypeEnumId]" out-map="context"/>
+                <if condition="!exist">
+                    <service-call name="close.agreements.FillablePdfServices.fill#FillablePdf" in-map="[orderId: orderId, agreementTypeEnumId: 'MkAgrLoanEstimate']"/>
+                    <service-call name="close.EmailServices.send#OrderStoreEmailAllApplicants" in-map="[
+                        orderId:orderId, emailTypeEnumId:'PsetIndirectLoanEstimate', roleTypeIds: ['PrimaryApplicant', 'CoApplicant']
+                    ]"/>
                 </if>
             </iterate>
         </actions>
