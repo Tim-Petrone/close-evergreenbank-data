@@ -3,6 +3,9 @@
 <#if coApplicant??>
   <#assign coAppPerson = coApplicant.person!"-">
 </#if>
+<#if orderAssignee??>
+    <#assign assignee = orderAssignee[0]>
+</#if>
 <#assign securedAgreements = ['Electronic Signature Agreement', 'Credit Application for Home Improvement', 'Notice of Intent to Proceed', 'Stage Funding Form', 'Authorization and Certification', 'Note for Secured', 'Mortgage form', 'KY Homeownership', 'Signature Affidavit/Name Affidavit', 'Completion Certificate', '0% Form']>
 <#assign unsecuredAgreements = ['Electronic Signature Agreement', 'Credit Application for Home Improvement', 'Stage Funding Form', 'Authorization and Certification', 'Note for Unsecured', 'Completion Certificate', '0% Form']>
 <#assign nowTimestamp = .now>
@@ -243,7 +246,13 @@
     </div>
     <div class="floor-walls">
        <ol style="margin: 0; padding-top: 1em; padding-bottom: 1em">
-          <li>Paycheck stub from each current employer (dated within last 30 days)</li>
+          <#if requirements.size() == 0>
+            <p>No items required at this time.</p>
+          </#if>
+          <#list requirements as requirment>
+            <li>${requirment}</li>
+          </#list>
+          <#--  <li>Paycheck stub from each current employer (dated within last 30 days)</li>
           <li>W-2 for last year for ${primaryPerson.firstName!"-"} ${primaryPerson.lastName!"-"}</li>
           <li>W-2s for last TWO years for ${primaryPerson.firstName!"-"} ${primaryPerson.lastName!"-"}</li>
           <#if coApplicant??>
@@ -267,7 +276,7 @@
             <li>Mortgage and Right to Cancel form to also be signed by: ____________________________</li>
           </#if>
           <li>Other: _________________________________</li>
-          <li>Signed letter of explanation regarding: __________________________________________</li>
+          <li>Signed letter of explanation regarding: __________________________________________</li>  -->
       </ol>
     </div>
     <div class="white-black">
@@ -302,7 +311,7 @@
         staged-funded and scheduled to disburse once project is finished. <br />
         <b>Thank you for your business!</b> <br />
         <#--  TODO Once nmls is implemented for users this needs to be updated with the current user's NMLS number  -->
-        <b>Evergreen Bank Group</b> (NMLS 456809) Loan underwriter: ${currentUserInfo.userFullName} (NMLS [NMLS#]) Approval Date: ${nowTimestamp?date?string["MM/dd/yyyy"]!"-"}
+        <b>Evergreen Bank Group</b> (NMLS ${vendorNmlsId!"-"}) Loan underwriter: ${assignee!"-"} (NMLS ${partyNmlsId!"-"}) Approval Date: ${nowTimestamp?date?string["MM/dd/yyyy"]!"-"}
       </p>
     </div>
   </div>
