@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eecas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/entity-eca-2.1.xsd">
+    <eeca id="FundingApprovedClosingDisclosureGenerator" entity="mantle.order.OrderHeader" on-update="true">
+        <condition><expression>statusChanged &amp;&amp; statusId == 'OrderApproved'</expression></condition>
+        <actions>
+            <service-call name="close.agreements.FillablePdfServices.fill#FillablePdf" in-map="[orderId: orderId, agreementTypeEnumId: 'MkAgrClosingDisclosure']"/>
+        </actions>
+    </eeca>
+
+<!--
+    TODO:  This to be completed when we have the enum for intent to proceed seeded and planned and the Closing Package Agreements ready
+        1. When Intent to Proceed is signed or triggered manually by bank we would generate the closing disclosure
+        2. When Closing Disclosure is generated we need to also generate the Closing Package Agreements and mark them as not signable in the Agreement Entity (Other Issues are working on extending and adding this field)
+    <eeca id="IntentToProceedForClosingDisclosure" entity="mantle.party.agreement.AgreementSignature" on-create="true">
+        <actions>
+            <entity-find-one entity-name="mantle.order.OrderAgreementDetail" value-field="intentToProceed">
+                <field-map field-name="agreementId"/>
+                <field-map field-name="agreementTypeEnumId" value="INTENT_TO_PROCEED"/>
+            </entity-find-one>
+            <if condition="!intentToProceed">
+                <return/>
+            </if>
+    TODO: Generate the closingDisclosure and Closing Package Agreements(Not Signable Status at the moment)
+    </actions>
+    </eeca>
+-->
+
+</eecas>
