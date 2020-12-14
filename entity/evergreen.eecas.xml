@@ -7,6 +7,13 @@
         </actions>
     </eeca>
 
+    <eeca id="CustomerProcessingAgrContentGenerator" entity="mantle.order.OrderHeader" on-update="true">
+        <condition><expression>statusChanged &amp;&amp; statusId == 'OrderCustomerProcessing'</expression></condition>
+        <actions>
+            <service-call name="close.EvergreenServices.save#OrderPdfAsAgreement" in-map="context"/>
+        </actions>
+    </eeca>
+
 <!--
     TODO:  This to be completed when we have the enum for intent to proceed seeded and planned and the Closing Package Agreements ready
         1. When Intent to Proceed is signed or triggered manually by bank we would generate the closing disclosure

@@ -32,4 +32,42 @@
             </iterate>
         </actions>
     </service>
+
+    <service verb="save" noun="OrderPdfAsAgreement">
+        <in-parameters>
+            <parameter name="orderId" required="true"/>
+            <parameter name="agreementTypeEnumId" default="MkAgrCreditApplication"/>
+        </in-parameters>
+        <out-parameters>
+            <parameter name="agreementId"/>
+        </out-parameters>
+        <actions>
+            <!--Generate new order PDF which is also the ILOS Credit Application-->
+            <service-call name="close.OrderServices.save#OrderPdf" in-map="context" out-map="newOrderPdf"/>
+
+            <!--Create Agreement-->
+            <service-call name="create#mantle.party.agreement.Agreement"
+                          in-map="[
+                            agreementTypeEnumId : 'MkAgrCreditApplication',
+                            statusId            : 'MkAgreeDraft'
+                          ]" out-map="agreement"/>
+
+            <set field="agreementId" from="agreement.agreementId"/>
+
+            <!--Link Agreement to order-->
+            <service-call name="create#mantle.order.OrderAgreement"
+                          in-map="[
+                            orderId     : orderId,
+                            agreementId : agreementId
+                          ]"/>
+
+            <!--Create an AgreementContent-->
+            <service-call name="create#mantle.party.agreement.AgreementContent"
+                          in-map="[
+                            agreementId        : agreementId,
+                            contentLocation    : newOrderPdf.contentLocation,
+                            contentTypeEnumId  : 'AcntDocument'
+                          ]"/>
+        </actions>
+    </service>
 </services>
